@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Department List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container mt-5 border border-1">
+    <div class="container mt-5" align="right">
+        <a th:href="@{/departments/showDepartmentForm}" class="btn btn-success">Add Department</a>
+    </div>
+    <div class="fs-1 mt-3">
+        <h1 class="fw-bolder text-center">Department List</h1>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="fw-bolder">
+            <tr>
+                <th class="col-6">Department</th>
+                <th class="col-6">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="department : ${departmentList}">
+                <td th:text="${department.departmentName}"></td>
+                <td>
+                    <a th:href="@{/departments/manageDepartment/{departmentId}(departmentId=${department.departmentId})}" class="link-success">Edit</a>
+                    &nbsp;|&nbsp;
+                    <a th:href="@{/departments/deleteDepartment/{departmentId}(departmentId=${department.departmentId})}" class="link-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
