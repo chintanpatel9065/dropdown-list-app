@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Employee</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+</head>
+<body>
+<div class="container mt-5 border border-1">
+    <div class="container">
+        <div class="fs-1">
+            <h1 class="fw-bolder">Manage Employee</h1>
+        </div>
+        <form th:action="@{/employees/insertOrUpdateEmployee}" method="post" class="row g-3" th:object="${employee}">
+            <input type="hidden" th:field="*{employeeId}" />
+            <div class="col-4 mt-5">
+                <label class="form-label fw-bold">FirstName</label>
+                <input type="text" class="form-control" th:field="*{firstName}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+            </div>
+            <div class="col-4 mt-5">
+                <label class="form-label fw-bold">MiddleName</label>
+                <input type="text" class="form-control" th:field="*{middleName}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></div>
+            </div>
+            <div class="col-4 mt-5">
+                <label class="form-label fw-bold">LastName</label>
+                <input type="text" class="form-control" th:field="*{lastName}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+            </div>
+            <div class="col-12">
+                <label class="form-label fw-bold">Address</label>
+                <textarea class="form-control" th:field="*{address}" rows="5" cols="38"></textarea>
+                <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control" th:field="*{email}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-bold">Mobile</label>
+                <input type="text" class="form-control" th:field="*{mobile}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></div>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-bold">BirthDate</label>
+                <input type="date" class="form-control" th:field="*{birthDate}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-bold">UserName</label>
+                <input type="text" class="form-control" th:field="*{userName}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-bold">Password</label>
+                <input type="password" class="form-control" th:field="*{password}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+            <div class="col-4">
+                <label class="form-label fw-bold">Department</label>
+                <select class="form-select" th:field="*{department}">
+                    <option value="">----------Select Department----------</option>
+                    <option th:each="department : ${departmentList}" th:value="${department.departmentId}" th:text="${department.departmentName}"></option>
+                </select>
+                <div class="text-danger" th:if="${#fields.hasErrors('department')}" th:errors="*{department}"></div>
+            </div>
+            <div class="col-12 d-grid gap-2">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="container mt-5"></div>
+</div>
+</body>
+</html>

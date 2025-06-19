@@ -33,6 +33,15 @@ public class EmployeeController {
         return "employee/employee-list";
     }
 
+    @GetMapping("/employees/showEmployeeForm")
+    public String showEmployeeForm(Model model) {
+        Employee employee = new Employee();
+        List<Department> departmentList = departmentService.getAllDepartmentList();
+        model.addAttribute("departmentList", departmentList);
+        model.addAttribute("employee", employee);
+        return "employee/employee-form";
+    }
+
     @PostMapping("/employees/insertOrUpdateEmployee")
     public String insertOrUpdateEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
